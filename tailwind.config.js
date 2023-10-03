@@ -7,12 +7,19 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      fontFamily: {
+        // Define your custom fonts here
+        // For example:
+        // 'custom-font': ['Font Family Name', 'sans'],
+      },
+      colors: {
+        'CW-textGray':'#6B7280',
+        'CW-primary':'#0B253E'
+        // Define custom colors here
+        // For example:
+        // 'text-gray': '#D2D82C',
       },
     },
   },
   plugins: [],
-}
+};

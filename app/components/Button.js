@@ -1,11 +1,17 @@
 const Button = ({
-  otherProps,
-  fullWidth=false,
-  btnText,
-                }) =>{
-  return(
-    <div className={`${fullWidth ? 'w-full' : 'w-fit'} mb-4`}>
-      <button {...otherProps} className={`btn bg-CW-primary text-gray-50 text-sm align-items-center border-CW-primary align-middle lg:px-16 sm:px-8 sm:py-3.5 py-3.5 w-full sm:rounded-md rounded-md`}>{btnText}</button>
+                  fullWidth = false,
+                  btnText = '',
+                  btnClasses = '',
+                  BtnIcon = null,
+                  ...otherProps
+                }) => {
+  return (
+    <div className={`${fullWidth ? 'w-full mb-4' : 'w-fit'} flex justify-center items-center`}>
+      <button {...otherProps}
+              className={`text-gray-50 text-sm align-items-center align-middle rounded-md ${btnClasses}`}>
+        {BtnIcon && <BtnIcon className='w-5 h-5 text-CW-primary'/>}
+        {btnText}
+      </button>
     </div>
   )
 }

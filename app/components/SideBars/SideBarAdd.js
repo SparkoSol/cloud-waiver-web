@@ -4,7 +4,7 @@ import Heading from "@/app/components/Heading";
 
 const SideBarAdd = () => {
   return (
-    <article className='w-1/2 min-h-screen relative justify-center items-center py-12 px-24 md:hidden lg:flex'>
+    <article className='w-1/2 min-h-screen relative justify-center items-center py-12 px-24 hidden lg:flex'>
       <Image src="/images/register-bg.jpg"
              layout='fill'
              objectFit='cover'

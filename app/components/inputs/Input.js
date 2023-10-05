@@ -10,7 +10,7 @@ const Input = ({placeholder, type, label=null, BtnIcon=null, inputRef, extraClas
             className="pointer-events-none absolute inset-y-0 left-3 mt-px flex items-center text-CW-textGray w-5 h-5 transform translate-y-1/2"/>}
           <input ref={inputRef}
                  className="block w-full py-2.5 rounded-md border border-gray-300 bg-gray-50 pl-11 focus:border-gray-300 focus-visible:outline-none sm:text-sm"
-                 id="email" type={type} name={label?.toLowerCase()} required="required" placeholder={placeholder}
+                 id={placeholder} type={type} name={label?.toLowerCase()} required="required" placeholder={placeholder}
           />
 
         </div>

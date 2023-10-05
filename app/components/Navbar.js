@@ -12,7 +12,7 @@ import SideBarMenu from "@/app/components/SideBars/SideBarMenu";
 
 const Navbar = () => {
   const searchRef = useRef(null);
-  const [open ,setOpen] = useState(false)
+  const [open ,setOpen] = useState();
   return (
     <>
       <div className="sticky top-0 z-10 h-16 flex-shrink-0 bg-white shadow">

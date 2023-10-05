@@ -1,5 +1,5 @@
 import SideBarAdd from "@/app/components/SideBars/SideBarAdd";
-import ResetPasswordForm from "@/app/ResetPassword/ResetPasswordForm";
+import ResetPasswordForm from "@/app/resetPassword/ResetPasswordForm";
 
 export default function ResetPasswordPage() {
   return (

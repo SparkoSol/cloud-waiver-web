@@ -50,7 +50,7 @@ const LoginForm = () =>{
         <CheckboxInput label='Remember me' inputRef={remember} extraClasses='text-sm'/>
         <Link className='text-sm font-medium text-blue-600' href={'/forgotPassword'}>Forgot your password?</Link>
       </div>
-      <Button btnText='Login' fullWidth={true} btnClasses='bg-CW-primary border-CW-primary lg:px-16 sm:px-8 sm:py-3.5 py-3.5 w-full'/>
+      <Button btnText='Login' fullWidth='w-full mb-4' btnClasses='bg-CW-primary border-CW-primary lg:px-16 sm:px-8 sm:py-3.5 py-3.5 w-full'/>
       <div>
         <p className="font-medium text-CW-primary text-sm">Don't have an account? <Link
           href="/register" className="text-blue-600">Signup</Link></p>

@@ -74,12 +74,13 @@ const RegisterForm = () => {
           BtnIcon={item.btnIcon}
           inputRef={item.ref}
           extraClasses='mb-6'
+          fullWidth={item.id !== 7}
         />
       ))}
       <div className='flex mb-2 ml-2 block text-xs text-gray-500 font-normal'>
         <CheckboxInput label='I accept the ' link='terms and conditions' url='/' extraClasses='text-xs'/>
       </div>
-      <Button btnText='Get Started' fullWidth={true} btnClasses='bg-CW-primary border-CW-primary lg:px-16 sm:px-8 sm:py-3.5 py-3.5 w-full'/>
+      <Button btnText='Get Started' fullWidth='w-full mb-4' btnClasses='bg-CW-primary border-CW-primary lg:px-16 sm:px-8 sm:py-3.5 py-3.5 w-full'/>
       <div>
         <p className="font-medium text-CW-primary text-sm">Alraedy have an account? <Link
           href="/" className="text-blue-600">Login Here</Link></p>

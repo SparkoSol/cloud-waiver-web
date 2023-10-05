@@ -1,22 +1,23 @@
 import './globals.css'
 import {Inter} from 'next/font/google'
-import Navbar from "@/app/components/Navbar";
+import Theme from "@/app/components/Theme";
 
 const inter = Inter({subsets: ['latin']})
 
 export const metadata = {
-  title: 'Cloud Waiver',
-  description: '',
+  title: 'Cloud Waiver', description: '',
 }
 
 export default function RootLayout({children}) {
-  const currentUser = false;
+  const currentUser = true;
   return (
     <html lang="en">
-    <body className={`${inter.className} bg-gray-50`}>
-    {currentUser && <Navbar/>}
-    {children}
+    <body>
+    <div className={`${inter.className} bg-gray-50`}>
+      <Theme currentUser={currentUser}>
+            {children}
+      </Theme>
+    </div>
     </body>
-    </html>
-  )
+    </html>)
 }

@@ -12,7 +12,7 @@ import Button from "@/app/components/Button";
 import clipboardIcon from "@heroicons/react/20/solid/esm/ClipboardIcon";
 import DashboardRow from "@/app/dashboard/components/DashboardRow";
 import {FolderIcon} from "@heroicons/react/24/outline";
-import Modal from "@/app/components/Modal";
+import Modal from "@/app/components/Modals/Modal";
 
 const DashboardClient = () => {
 
@@ -54,8 +54,8 @@ const DashboardClient = () => {
                 btnClasses='bg-CW-primary border-CW-primary px-5 py-2.5'
                 iconClasses='w-4 h-4 text-white inline-block ml-2'/>
       </div>
-      <div className='flex gap-2 mb-4'>
-        <Input placeholder='Search' type='text' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon} fullWidth={false}/>
+      <div className='flex gap-2 mb-4 flex-wrap'>
+        <Input placeholder='Search' type='text' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon} extraClasses='w-fit inline-block'/>
         {selectData.map((item, index) => {
           return <SelectInput key={index} options={item.options} state={item.state} setState={item.setState}/>
         })}

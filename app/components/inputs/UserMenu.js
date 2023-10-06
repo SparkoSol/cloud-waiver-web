@@ -1,61 +1,59 @@
 'use client';
-import {useCallback, useRef, useState} from "react";
+import {Fragment, useCallback, useRef, useState} from "react";
 import Image from "next/image";
 import {ChevronDownIcon} from "@heroicons/react/20/solid";
 import Link from "next/link";
 import {useOnClickOutside} from "@/app/hooks/useClickOut";
+import {Menu, Transition} from "@headlessui/react";
 
-const UserMenu = ({}) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const ref = useRef(null);
-  const toggleOpen = useCallback(() => {
-    setIsOpen((value) => !value);
-  }, []);
-  useOnClickOutside(ref, () => setIsOpen(false));
-
-  return (<div className="relative" ref={ref}>
-    <div className="flex flex-row items-center h-full gap-2">
-      <button
-        onClick={toggleOpen}
-        className="flex flex-row items-center gap-1 cursor-pointer border focus:border rounded-3xl focus:border-blue-400 focus:border-2 p-1">
-        <Image
-          className="rounded-full"
-          height="32"
-          width="32"
-          alt="Avatar"
-          src='/images/default-img.svg'
-        />
-        <ChevronDownIcon className='w-7 h-7 text-[#BDBDBD]'/>
-      </button>
-    </div>
-    {isOpen && (<div
-      className="overflow-auto absolute z-10 max-w-sm max-h-[500px] w-100 -right-[1.75rem] top-full rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 divide-y block">
-      <div className="flex flex-col">
-        <div className="py-3 px-4" role="none">
-          <p className="block text-sm text-gray-900" role="none">
-            Sufyan Zaki
-          </p>
-          <p className="block text-sm text-gray-900 break-words" role="none">
-            sufyan.zaki.789@gmail.com
-          </p>
+const UserMenu = ({options}) => {
+  return (
+    <div className="flex flex-row items-center h-full gap-2 relative">
+      <Menu as="div" className="relative inline-block text-left">
+        <div>
+          <Menu.Button
+                       className="flex flex-row items-center gap-1 cursor-pointer border focus:border rounded-3xl focus:border-blue-400 focus:border-2 p-1">
+            <Image
+              className="rounded-full"
+              height="32"
+              width="32"
+              alt="Avatar"
+              src='/images/default-img.svg'
+            />
+            <ChevronDownIcon className='w-7 h-7 text-[#BDBDBD]'/>
+          </Menu.Button>
         </div>
-        <ul className='flex flex-col cursor-pointer'>
-          <li className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50'>
-            <Link href="/">sparkoSols - sparko.onlinewaiverpro.com</Link >
-          </li>
-          <li className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50'>
-            <Link href="/" role="menuitem">Dashboard</Link >
-          </li>
-          <li className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50'>
-            <Link href="/" role="menuitem">Setting</Link >
-          </li>
-          <li className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50'>
-            <Link href="/" role="menuitem">Sign out</Link >
-          </li>
-        </ul>
-      </div>
-    </div>)}
-  </div>);
+        <Transition
+          as={Fragment}
+          enter="transition ease-out duration-100"
+          enterFrom="transform opacity-0 scale-95"
+          enterTo="transform opacity-100 scale-100"
+          leave="transition ease-in duration-75"
+          leaveFrom="transform opacity-100 scale-100"
+          leaveTo="transform opacity-0 scale-95"
+        >
+          <Menu.Items
+            className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div className="px-1 py-1 ">
+              {options.map((item, index)=>{
+                return (<Menu.Item key={index}>
+                  {({active}) => (
+                    <Link href={item.url}
+                          className={`${
+                            active ? 'bg-gray-200 text-gray-900' : 'text-gray-900'
+                          } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                    >
+                      {item.text}
+                    </Link >
+                  )}
+                </Menu.Item>)
+              })}
+            </div>
+          </Menu.Items>
+        </Transition>
+      </Menu>
+    </div>
+  );
 }
 
 export default UserMenu;

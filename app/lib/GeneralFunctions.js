@@ -27,15 +27,26 @@ export const cardsData = [{
 export const DashBoardHeaders = ['ID', 'SIGNED DATE', 'FIRST NAME', 'LAST NAME', 'REFERENCE NO', 'TEMPLATE NAME', 'STATUS']
 
 export const dashboardData = [{
-  _id:'1111111',
-  signedDate:'Oct 05, 2023',
-  firstName:'John',
-  lastName:'Doe',
-  refrenceNo:'SPARKO',
-  templateName:'Lorem',
-  status:'Submitted'
+  _id: '1111111',
+  signedDate: 'Oct 05, 2023',
+  firstName: 'John',
+  lastName: 'Doe',
+  refrenceNo: 'SPARKO',
+  templateName: 'Lorem',
+  status: 'Submitted'
 }]
 
-export function limitChars(str, number){
+export const menuOptions = [{
+  url: '/',
+  text: 'sparkoSols - sparko.onlinewaiverpro.com'
+}, {
+  url: '/',
+  text: 'Dashboard'
+}, {
+  url: '/',
+  text: 'Settings'
+}]
+
+export function limitChars(str, number) {
   return str.slice(0, number) + '...';
 }

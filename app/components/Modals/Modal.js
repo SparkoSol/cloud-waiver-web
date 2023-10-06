@@ -1,10 +1,8 @@
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import Input from "@/app/components/inputs/Input";
-import Button from "@/app/components/Button";
 
-export default function Modal({open, setOpen}) {
+export default function Modal({open, setOpen, editMode}) {
   const cancelButtonRef = useRef(null)
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -51,7 +49,7 @@ export default function Modal({open, setOpen}) {
                     className="text-gray-50 text-sm align-items-center align-middle rounded-md bg-CW-theme px-4 py-2 font-semibold w-full"
                     onClick={() => setOpen(false)}
                   >
-                    Deactivate
+                    {editMode ? 'Update' : 'Submit'}
                   </button>
                   <button
                     type="button"

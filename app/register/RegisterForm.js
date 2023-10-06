@@ -73,8 +73,7 @@ const RegisterForm = () => {
           label={item.label}
           BtnIcon={item.btnIcon}
           inputRef={item.ref}
-          extraClasses='mb-6'
-          fullWidth={item.id !== 7}
+          extraClasses={`mb-6 ${item.id !== 7 ? '' : 'w-fit inline-block'}`}
         />
       ))}
       <div className='flex mb-2 ml-2 block text-xs text-gray-500 font-normal'>

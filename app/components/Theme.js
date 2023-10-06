@@ -10,6 +10,7 @@ import {useRef, useState} from "react";
 import UserMenu from "@/app/components/inputs/UserMenu";
 import Container from "@/app/components/Container";
 import SideBarMenu from "@/app/components/SideBars/SideBarMenu";
+import {menuOptions} from "@/app/lib/GeneralFunctions";
 
 const Theme = ({children, currentUser}) => {
   const searchRef = useRef(null);
@@ -18,7 +19,7 @@ const Theme = ({children, currentUser}) => {
   const pathName = usePathname();
   return (
     <>
-      {pathName==='/dashboard' && <>
+      {pathName==='/template' && <>
         <div className="sticky top-0 z-10 h-16 flex-shrink-0 bg-white shadow">
           <Container>
             <div className='flex gap-3 h-full'>
@@ -40,15 +41,15 @@ const Theme = ({children, currentUser}) => {
                     <Input placeholder='Search' type='text' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon}/>
                   </div>
                 </div>
-                <UserMenu/>
+                <UserMenu options={menuOptions}/>
               </div>
             </div>
           </Container>
         </div>
         <SideBarMenu open={open} setOpen={setOpen}/>
       </>}
-      <div className={`flex flex-col ${!open && pathName==='/dashboard' ? 'md:pl-64' : 'md:pl-0'} w-full transition-all ease-in-out`}>
-        <div className={`${pathName==='/dashboard' && 'p-5 max-w-6xl'} mx-auto w-full`}>
+      <div className={`flex flex-col ${!open && pathName==='/template' ? 'md:pl-64' : 'md:pl-0'} w-full transition-all ease-in-out`}>
+        <div className={`${pathName==='/template' && 'p-5 max-w-6xl'} mx-auto w-full`}>
           {children}
         </div>
       </div>

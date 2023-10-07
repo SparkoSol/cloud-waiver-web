@@ -1,9 +1,8 @@
 'use client';
-import {Fragment, useCallback, useRef, useState} from "react";
+import {Fragment} from "react";
 import Image from "next/image";
 import {ChevronDownIcon} from "@heroicons/react/20/solid";
 import Link from "next/link";
-import {useOnClickOutside} from "@/app/hooks/useClickOut";
 import {Menu, Transition} from "@headlessui/react";
 
 const UserMenu = ({options}) => {

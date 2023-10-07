@@ -4,7 +4,7 @@ import Heading from "@/app/components/Heading";
 import Card from "@/app/dashboard/components/Card";
 import Input from "@/app/components/inputs/Input";
 import {MagnifyingGlassIcon} from "@heroicons/react/20/solid";
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState} from "react";
 import SelectInput from "@/app/components/inputs/SelectInput";
 import {cardsData, dashboardData, DashBoardHeaders, generateMonths, generateYears} from "@/app/lib/GeneralFunctions";
 import DataTable from "@/app/components/DataTable";
@@ -17,7 +17,6 @@ import Modal from "@/app/components/Modals/Modal";
 const DashboardClient = () => {
 
   const searchRef = useRef();
-  const selectAllRef = useRef();
   const [status, setStatus] = useState('Status')
   const [template, setTemplate] = useState('Template')
   const [month, setMonth] = useState('Month')
@@ -38,7 +37,7 @@ const DashboardClient = () => {
   return (<>
     <div>
       <Heading title='Dashboard' titleClasses='text-xl leading-tight text-gray-800 mb-4'/>
-      <div className='grid grid-rows-1 grid-cols-3 gap-5'>
+      <div className='grid grid-rows-1 grid-cols-1 md:grid-cols-3 gap-5'>
         {cardsData.map(item => {
           return (<Card key={item.id} title={item.title} number={item.number} endIcon={item.endIcon}
                         startIcon={item.startIcon}/>)
@@ -57,7 +56,7 @@ const DashboardClient = () => {
       <div className='flex gap-2 mb-4 flex-wrap'>
         <Input placeholder='Search' type='text' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon} extraClasses='w-fit inline-block'/>
         {selectData.map((item, index) => {
-          return <SelectInput key={index} options={item.options} state={item.state} setState={item.setState}/>
+          return <SelectInput extraClasses='grow md:grow-0 w-28' key={index} options={item.options} state={item.state} setState={item.setState}/>
         })}
       </div>
       {dashboardData.length > 0 ? <DataTable headers={DashBoardHeaders} TableRow={DashboardRow} items={dashboardData} setSelectAll={setSelectAll}/> : <div className='text-center mt-4'>

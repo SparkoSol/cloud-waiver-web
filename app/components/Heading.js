@@ -1,4 +1,6 @@
 'use client';
+import {twMerge} from "tailwind-merge";
+
 const Heading = ({
                    title,
                    subtitle,
@@ -8,10 +10,10 @@ const Heading = ({
                  }) => {
   return (
     <div className={center ? 'text-center' : 'text-start'}>
-      <div className={`font-bold mb-1 ${titleClasses ? titleClasses : 'text-white text-5xl leading-[150%]'}`}>
+      <div className={twMerge(`font-bold mb-1 text-white text-5xl leading-[150%] ${titleClasses}`)}>
         {title}
       </div>
-      <div className={`text-base ${subTitleClasses ? subTitleClasses : 'text-[#CDCDFF]'}`}>
+      <div className={twMerge(`text-base text-[#CDCDFF] ${subTitleClasses}`)}>
         {subtitle}
       </div>
     </div>

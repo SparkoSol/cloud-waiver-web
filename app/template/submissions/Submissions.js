@@ -1,3 +1,5 @@
+'use client'
+
 import Button from "@/app/components/Button";
 import {LinkIcon, MagnifyingGlassIcon} from "@heroicons/react/20/solid";
 import QRModal from "@/app/components/Modals/QRModal";
@@ -25,9 +27,9 @@ const Submissions = ({currentTab=''}) => {
           <QRModal setOpen={setOpen} open={open}/>
         </div>
       </div>}
-      <div className='flex gap-3'>
-        <Input placeholder='Search' type='text' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon} extraClasses='w-fit inline-block'/>
-        <SelectInput options={['Submitted', 'Approved', 'Declined', 'Pending', 'Status']} setState={setStatus} state={status} extraClasses='w-1/4'/>
+      <div className='flex gap-3 flex-wrap'>
+        <Input placeholder='Search' type='text' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon} extraClasses='w-fit inline-block grow sm:grow-0'/>
+        <SelectInput extraClasses='w-1/4 grow sm:grow-0' options={['Submitted', 'Approved', 'Declined', 'Pending', 'Status']} setState={setStatus} state={status}/>
       </div>
       {
         dashboardData.length > 0 ?

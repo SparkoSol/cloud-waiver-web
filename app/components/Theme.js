@@ -19,7 +19,7 @@ const Theme = ({children, currentUser}) => {
   const pathName = usePathname();
   return (
     <>
-      {pathName==='/template' && <>
+      {!(pathName === '/forgotPassword' || pathName === '/' || pathName === '/resetPassword' || pathName === '/register') && <>
         <div className="sticky top-0 z-10 h-16 flex-shrink-0 bg-white shadow">
           <Container>
             <div className='flex gap-3 h-full'>
@@ -46,10 +46,10 @@ const Theme = ({children, currentUser}) => {
             </div>
           </Container>
         </div>
-        <SideBarMenu open={open} setOpen={setOpen}/>
+        <SideBarMenu open={open} setOpen={setOpen} param={pathName}/>
       </>}
-      <div className={`flex flex-col ${!open && pathName==='/template' ? 'md:pl-64' : 'md:pl-0'} w-full transition-all ease-in-out`}>
-        <div className={`${pathName==='/template' && 'p-5 max-w-6xl'} mx-auto w-full`}>
+      <div className={`flex flex-col ${!open && !(pathName === '/forgotPassword' || pathName === '/' || pathName === '/resetPassword' || pathName === '/register') ? 'md:pl-64' : 'md:pl-0'} w-full transition-all ease-in-out`}>
+        <div className={`${!(pathName === '/forgotPassword' || pathName === '/' || pathName === '/resetPassword' || pathName === '/register') && 'p-5 max-w-6xl'} mx-auto w-full`}>
           {children}
         </div>
       </div>

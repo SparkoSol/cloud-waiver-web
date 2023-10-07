@@ -1,7 +1,7 @@
-import TemplateClient from "@/app/template/templateClient";
+import Overview from "@/app/template/components/Overview";
 
 export default function TemplatePage() {
   return (
-    <TemplateClient/>
+    <Overview/>
   )
 }

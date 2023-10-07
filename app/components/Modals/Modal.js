@@ -46,7 +46,7 @@ export default function Modal({open, setOpen, editMode}) {
                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                   <button
                     type="button"
-                    className="text-gray-50 text-sm align-items-center align-middle rounded-md bg-CW-theme px-4 py-2 font-semibold w-full"
+                    className="text-gray-50 text-sm align-items-center align-middle rounded-md bg-CW-theme px-4 py-2 font-semibold w-full mb-2 sm:mb-0"
                     onClick={() => setOpen(false)}
                   >
                     {editMode ? 'Update' : 'Submit'}

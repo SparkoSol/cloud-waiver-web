@@ -50,3 +50,5 @@ export const menuOptions = [{
 export function limitChars(str, number) {
   return str.slice(0, number) + '...';
 }
+
+export const countries = ["Pakistan", "Germany", "United States", "United Kingdom", "France", "Australia", "Canada", "Japan"];

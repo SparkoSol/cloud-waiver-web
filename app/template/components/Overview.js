@@ -1,4 +1,5 @@
-import Submissions from "@/app/template/components/Submissions";
+'use client'
+import Submissions from "@/app/template/submissions/Submissions";
 import Input from "@/app/components/inputs/Input";
 import Button from "@/app/components/Button";
 
@@ -10,7 +11,7 @@ const Overview = () => {
     {class: 'border-orange-400', title:'Total Declined', number:0}
   ]
   return (<section>
-    <div className='flex gap-3 py-6'>
+    <div className='flex gap-3 py-6 flex-wrap lg:flex-nowrap'>
       <div className="w-full lg:w-3/5">
         <div className="grid grid-cols-2 gap-3">
           {data.map((item, index)=>{
@@ -29,11 +30,11 @@ const Overview = () => {
       <div className="w-full lg:w-2/5">
         <div className="bg-white p-4 py-7 rounded-md space-y-6">
           <div className='flex gap-3 items-end'>
-            <Input placeholder='eg. Waiver 101' type='text' label='Share your waiver with the following link' extraClasses='font-medium text-gray-500 w-72' inputClasses='pl-3' value='sparko.onlinewaiverpro.com/waiver/5f816420-63fe-11ee-bdb3-b91279ed4d18' />
+            <Input placeholder='eg. Waiver 101' type='text' label='Share your waiver with the following link' extraClasses='font-medium text-gray-500 lg:w-72' inputClasses='pl-3' value='sparko.onlinewaiverpro.com/waiver/5f816420-63fe-11ee-bdb3-b91279ed4d18' />
             <Button btnText='Copy' btnClasses='bg-gray-200 px-6 py-3 text-gray-900'/>
           </div>
           <div className='flex gap-3 items-end'>
-            <Input placeholder='eg. Waiver 101' type='text' label='Share the link via email' extraClasses='font-medium text-gray-500 w-72' inputClasses='pl-3'/>
+            <Input placeholder='eg. Waiver 101' type='text' label='Share the link via email' extraClasses='font-medium text-gray-500 lg:w-72' inputClasses='pl-3'/>
             <Button btnText='Share' btnClasses='bg-CW-primary px-6 py-3'/>
           </div>
         </div>

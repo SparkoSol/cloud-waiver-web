@@ -9,7 +9,7 @@ const TemplateClient = ({children}) => {
   const tabs = [
     {name: 'Overview', url:'/template', id:1},
     {name: 'Submissions', url:'/template/submissions', id:2},
-    {name: 'Builder', url:'/templatebuilder', id:3},
+    {name: 'Builder', url:'/template-builder', id:3},
     {name: 'Integrations', url:'/template/integrations', id:4},
     {name: 'Settings', url:'/template/settings', id:5}
   ]

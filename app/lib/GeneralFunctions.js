@@ -36,6 +36,53 @@ export const dashboardData = [{
   status: 'Submitted'
 }]
 
+export const billingOptions = [{
+  plan:'Growth',
+  firstChar:{
+    title:'For the first 1 - 550', price:'Flat USD45'
+  },
+  secondChar:{
+    title:'550 - Rest Per Unit', price:'USD0.09'
+  }
+}, {
+  plan:'Free',
+  firstChar:{
+    title:'For All Per Unit', price:'USD0.15'
+  }
+}, {
+  plan:'Basic',
+  firstChar:{
+    title:'For the first 1 - 150', price:'Flat USD10'
+  },
+  secondChar:{
+    title:'150 - Rest Per Unit', price:'USD0.1'
+  }
+}, {
+  plan:'Standard',
+  firstChar:{
+    title:'For the first 1 - 1050', price:'Flat USD89'
+  },
+  secondChar:{
+    title:'1050 - Rest Per Unit', price:'USD0.09'
+  }
+}, {
+  plan:'Enterprise Pro',
+  firstChar:{
+    title:'For the first 1 - 5050', price:'Flat USD199'
+  },
+  secondChar:{
+    title:'5050 - Rest Per Unit', price:'USD0.04'
+  }
+}, {
+  plan:'Enterprise',
+  firstChar:{
+    title:'For the first 1 - 2550', price:'Flat USD125'
+  },
+  secondChar:{
+    title:'2550 - Rest Per Unit', price:'USD0.05'
+  }
+}]
+
 export const menuOptions = [{
   url: '/',
   text: 'sparkoSols - sparko.onlinewaiverpro.com'
@@ -46,6 +93,16 @@ export const menuOptions = [{
   url: '/',
   text: 'Settings'
 }]
+
+export const invoiceData = [
+  {
+    id:1,
+    invoice:'B8DAA400-0001',
+    period:'Oct 04, 2023 - Oct 04, 2023',
+    total:'$0 USD',
+    status:'Paid'
+  }
+]
 
 export function limitChars(str, number) {
   return str.slice(0, number) + '...';

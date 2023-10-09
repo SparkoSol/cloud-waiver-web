@@ -12,7 +12,7 @@ import {
 import {XMarkIcon} from "@heroicons/react/20/solid";
 import Button from "@/app/components/Button";
 import Image from "next/image";
-import {useParams} from "next/navigation";
+import tabs from "@/app/components/Tabs";
 
 const SideBarMenu = ({open, setOpen, param}) => {
   const inputList = [
@@ -24,8 +24,9 @@ const SideBarMenu = ({open, setOpen, param}) => {
     {id: 5, text: 'Kiosk Settings', url: '/', Icon: ComputerDesktopIcon},
     {id: 6, text: 'Staff Management', url: '/', Icon: UsersIcon},
     {id: 7, text: 'Settings', url: '/settings', Icon: Cog6ToothIcon},
-    {id: 8, text: 'Billing', url: '/', Icon: AdjustmentsVerticalIcon},
+    {id: 8, text: 'Billing', url: '/billing', Icon: AdjustmentsVerticalIcon},
   ];
+  const url = `/${param.split('/')[1]}`
   return (
     <>
       <aside
@@ -41,7 +42,7 @@ const SideBarMenu = ({open, setOpen, param}) => {
         </div>
         <ul className='space-y-1 pb-2'>
           {inputList.map(item => {
-            return <MenuListItem key={item.id} active={param === item.url} Icon={item.Icon} text={item.text} url={item.url}/>
+            return <MenuListItem key={item.id} active={url === item.url} Icon={item.Icon} text={item.text} url={item.url}/>
           })}
         </ul>
       </aside>
@@ -49,7 +50,7 @@ const SideBarMenu = ({open, setOpen, param}) => {
         className={`hidden md:fixed md:bottom-0 md:top-[4.0625rem] md:flex md:w-64 md:flex-col z-1 transition-all ease-in-out bg-white border-r border-gray-200 ${open ? 'left-[-256px]' : 'left-0'}`}>
         <ul className='space-y-4 mt-5'>
           {inputList.map(item => {
-            return <MenuListItem key={item.id} active={param === item.url} Icon={item.Icon} text={item.text} url={item.url}/>
+            return <MenuListItem key={item.id} active={url === item.url} Icon={item.Icon} text={item.text} url={item.url}/>
           })}
         </ul>
       </aside>

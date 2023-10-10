@@ -13,9 +13,10 @@ import clipboardIcon from "@heroicons/react/20/solid/esm/ClipboardIcon";
 import DashboardRow from "@/app/dashboard/components/DashboardRow";
 import {FolderIcon} from "@heroicons/react/24/outline";
 import Modal from "@/app/components/Modals/Modal";
+import {useSearchParams} from "next/navigation";
 
 const DashboardClient = () => {
-
+  const searchParams = useSearchParams();
   const searchRef = useRef();
   const [status, setStatus] = useState('Status')
   const [template, setTemplate] = useState('Template')

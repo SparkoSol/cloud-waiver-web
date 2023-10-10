@@ -1,6 +1,5 @@
 'use client';
 import {createSlice} from '@reduxjs/toolkit';
-import {loginUser} from "@/app/redux/user/userThunk";
 
 const initialState = {
   currentUser: null,
@@ -16,9 +15,19 @@ const userSlice = createSlice({
       state.currentUser = "Reduced User"
     }
   },
-  extraReducers: {
-
-  }
+  // extraReducers: (builder) => {
+  //   builder
+  //     .addCase(loginUser.pending, (state) => {
+  //       state.status = 'pending';
+  //     })
+  //     .addCase(loginUser.fulfilled, (state, action) => {
+  //       state.status = 'fulfilled';
+  //       state.currentUser = action.payload;
+  //     })
+  //     .addCase(loginUser.rejected, (state, action) => {
+  //       state.status = 'rejected';
+  //     });
+  // }
 })
 
 export const {} = userSlice.actions;

@@ -6,22 +6,39 @@ import Button from "@/app/components/Button";
 import {BuildingOfficeIcon, EnvelopeIcon, LockClosedIcon, UserIcon} from "@heroicons/react/20/solid";
 import CheckboxInput from "@/app/components/inputs/CheckboxInput";
 import FormLayout from "@/app/components/Form";
+import {useRef} from "react";
+import {useDispatch} from "react-redux";
+import {registerUser} from "@/app/redux/user/userThunk";
+import {useRouter} from "next/navigation";
+import toast from "react-hot-toast";
 
 const RegisterForm = () => {
+  const router = useRouter();
+const dispatch = useDispatch();
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const emailRef = useRef();
+  const companyNameRef = useRef();
+  const confirmPasswordRef = useRef()
+  const domainNameRef = useRef()
+  const passwordRef = useRef();
+
   const inputData = [
     {
       id: 1,
-      placeHolder: 'name@example.com',
+      placeHolder: 'John',
       label: 'First Name',
       type: 'text',
       btnIcon: UserIcon,
+      ref:firstNameRef
     },
     {
       id: 2,
-      placeHolder: 'name@example.com',
+      placeHolder: 'Doe',
       label: 'Last Name',
       type: 'text',
       btnIcon: UserIcon,
+      ref:lastNameRef
     },
     {
     id: 3,
@@ -29,12 +46,14 @@ const RegisterForm = () => {
     label: 'Your Email',
     type: 'text',
     btnIcon: EnvelopeIcon,
+      ref:emailRef
   }, {
     id: 4,
     placeHolder: '*********',
     label: 'Password',
     type: 'password',
     btnIcon:LockClosedIcon,
+      ref:passwordRef
   },
     {
       id: 5,
@@ -42,24 +61,42 @@ const RegisterForm = () => {
       label: 'Password Confirmation',
       type: 'password',
       btnIcon:LockClosedIcon,
+      ref:confirmPasswordRef
     },
     {
       id: 6,
-      placeHolder: 'Company Name',
+      placeHolder: 'Yates Curry Co',
       label: 'Company Name',
       type: 'text',
       btnIcon:BuildingOfficeIcon,
+      ref:companyNameRef
     },
     {
       id: 7,
-      placeHolder: 'Domain Name',
+      placeHolder: 'Indigo Mccormick',
       label: 'Domain Name',
       type: 'text',
       btnIcon:BuildingOfficeIcon,
+      ref:domainNameRef
     }]
 
-  function handleSubmit(e){
-    console.log('called')
+  async function handleSubmit(e){
+    e.preventDefault();
+    if(passwordRef.current.value !== confirmPasswordRef.current.value){
+      toast.error('Passwords do not match.')
+      return
+    }
+    const body = {
+      username: emailRef.current.value,
+      password: passwordRef.current.value,
+      first_name : firstNameRef.current.value,
+      last_name: lastNameRef.current.value,
+      domain: domainNameRef.current.value,
+      company_name:companyNameRef.current.value
+    }
+    const domain = await dispatch(registerUser(body)).unwrap();
+    router.push('/')
+    toast.success('Registration Successful!')
   }
   return(
     <FormLayout handleSubmit={handleSubmit}

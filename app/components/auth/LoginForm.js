@@ -25,8 +25,12 @@ const LoginForm = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const domain = await dispatch(loginUser({username: 'zain@sparkosol.com', password: '123456'})).unwrap();
-    window.location.assign(`http://${domain}.localhost:3000/dashboard`);
+    const body = {
+      username:'sufyan.zaki.789@gmail.com',
+      password:'test123'
+    }
+    const data = await dispatch(loginUser(body)).unwrap();
+    // window.location.assign(`http://${data}.localhost:3000/dashboard?data=johnDoe`);
   }
 
   return (<FormLayout handleSubmit={handleSubmit} title='Hi, Welcome Back' subtitle='Please enter your details'>

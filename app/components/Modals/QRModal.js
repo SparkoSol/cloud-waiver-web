@@ -67,8 +67,8 @@ export default function QRModal({open, setOpen}) {
                         Click here to download
                       </button>
                       <div className="mt-8 flex flex-col gap-4">
-                        <Input placeholder='eg. Waiver 101' type='text' label='You can share it with following link' extraClasses='font-medium text-gray-500' inputClasses='pl-3' value='sparko.onlinewaiverpro.com/waiver/5f816420-63fe-11ee-bdb3-b91279ed4d18' />
-                        <Input placeholder='eg. Waiver 101' type='text' label='Invite via Email'
+                        <Input placeholder='eg. Waiver 101' label='You can share it with following link' extraClasses='font-medium text-gray-500' inputClasses='pl-3' value='sparko.onlinewaiverpro.com/waiver/5f816420-63fe-11ee-bdb3-b91279ed4d18' />
+                        <Input placeholder='eg. Waiver 101' label='Invite via Email'
                                extraClasses='font-medium text-gray-500' inputClasses='pl-3'/>
                       </div>
                     </div>

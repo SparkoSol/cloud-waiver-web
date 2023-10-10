@@ -44,7 +44,7 @@ const DataTable = ({
                   {colspan === 1 && <th
                     key='Actions'
                     scope="col"
-                    className="px-3 py-3.5  whitespace-nowrap hidden sm:block  text-left font-chivo bg-white sm:pl-6 transition-colors duration-300"
+                    className="px-3 py-3.5  whitespace-nowrap block  text-left font-chivo bg-white sm:pl-6 transition-colors duration-300"
                   >
                     <div className="flex items-center">
                       Actions

@@ -2,8 +2,6 @@ import Heading from "@/app/components/Heading";
 import DataTable from "@/app/components/DataTable";
 import {billingOptions, invoiceData} from "@/app/lib/GeneralFunctions";
 import BillingRow from "@/app/billing/components/BillingRow";
-import PaymentRow from "@/app/billing/components/PaymentRow";
-import Button from "@/app/components/Button";
 import InvoiceRow from "@/app/billing/components/InvoiceRow";
 import BillingClient from "@/app/billing/BillingClient";
 

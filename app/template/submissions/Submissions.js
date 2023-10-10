@@ -28,7 +28,7 @@ const Submissions = ({currentTab=''}) => {
         </div>
       </div>}
       <div className='flex gap-3 flex-wrap'>
-        <Input placeholder='Search' type='text' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon} extraClasses='w-fit inline-block grow sm:grow-0'/>
+        <Input placeholder='Search' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon} extraClasses='w-fit inline-block grow sm:grow-0'/>
         <SelectInput extraClasses='w-1/4 grow sm:grow-0' options={['Submitted', 'Approved', 'Declined', 'Pending', 'Status']} setState={setStatus} state={status}/>
       </div>
       {

@@ -54,7 +54,7 @@ const DashboardClient = () => {
                 iconClasses='w-4 h-4 text-white inline-block ml-2'/>
       </div>
       <div className='flex gap-2 mb-4 flex-wrap'>
-        <Input placeholder='Search' type='text' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon} extraClasses='w-fit inline-block'/>
+        <Input placeholder='Search' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon} extraClasses='w-fit inline-block'/>
         {selectData.map((item, index) => {
           return <SelectInput extraClasses='grow md:grow-0 w-28' key={index} options={item.options} state={item.state} setState={item.setState}/>
         })}

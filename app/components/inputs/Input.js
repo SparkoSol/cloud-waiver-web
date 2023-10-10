@@ -3,7 +3,7 @@
 import {twMerge} from "tailwind-merge";
 
 const Input = ({
-                 placeholder, type, label = null, BtnIcon = null, inputRef, extraClasses = '', inputClasses, value = ''
+                 placeholder, type='text', label = null, BtnIcon = null, inputRef, extraClasses = '', inputClasses, value = ''
                }) => {
   return (<>
     <div className={twMerge(`w-full ${extraClasses}`)}>

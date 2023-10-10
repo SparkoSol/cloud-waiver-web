@@ -38,7 +38,7 @@ const Theme = ({children, currentUser}) => {
                   <div className="relative rounded-md shadow-sm">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                     </div>
-                    <Input placeholder='Search' type='text' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon}/>
+                    <Input placeholder='Search' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon}/>
                   </div>
                 </div>
                 <UserMenu options={menuOptions}/>

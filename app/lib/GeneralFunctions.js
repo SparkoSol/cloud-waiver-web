@@ -109,3 +109,11 @@ export function limitChars(str, number) {
 }
 
 export const countries = ["Pakistan", "Germany", "United States", "United Kingdom", "France", "Australia", "Canada", "Japan"];
+
+export const customerHeaders = [
+  'ID','FIRST NAME','LAST NAME','EMAIL','WAIVERS COUNT'
+]
+
+export const customerData = [
+  {id:'11112222', firstName:'John', lastName:' Doe', email:'gohn@gmail.com', count:1}
+]

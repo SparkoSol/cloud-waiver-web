@@ -38,7 +38,7 @@ export default function Modal({open, setOpen, editMode}) {
                         New Template
                       </Dialog.Title>
                       <div className="mt-8">
-                        <Input placeholder='eg. Waiver 101' type='text' label='Please enter your template name' extraClasses='font-medium text-gray-500' inputClasses='pl-3'/>
+                        <Input placeholder='eg. Waiver 101' label='Please enter your template name' extraClasses='font-medium text-gray-500' inputClasses='pl-3'/>
                       </div>
                     </div>
                   </div>

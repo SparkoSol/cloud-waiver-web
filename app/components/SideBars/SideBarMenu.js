@@ -20,7 +20,7 @@ const SideBarMenu = ({open, setOpen, param}) => {
     {id: 1, text: 'Waiver Templates', url: '/template', Icon: DocumentTextIcon},
     {id: 2, text: 'Signed Waivers', url: '/', Icon: ClipboardDocumentIcon},
     {id: 3, text: 'Templates Gallery', url: '/', Icon: UsersIcon},
-    {id: 4, text: 'Customers', url: '/', Icon: UserIcon},
+    {id: 4, text: 'Customers', url: '/customers', Icon: UserIcon},
     {id: 5, text: 'Kiosk Settings', url: '/', Icon: ComputerDesktopIcon},
     {id: 6, text: 'Staff Management', url: '/', Icon: UsersIcon},
     {id: 7, text: 'Settings', url: '/settings', Icon: Cog6ToothIcon},

@@ -48,7 +48,7 @@ const Settings = () => {
                        subTitleClasses='text-sm text-gray-500'/>
             </div>
             <div className='mt-4 md:mt-0'>
-              {item.id === 4 ? <Input placeholder='eg. john@doe.com, smith@sam.com' type='text' label='Email Addresses' extraClasses='font-medium text-gray-500' inputClasses='pl-3'/> : <ToggleButton enabled={item.state} setEnabled={item.setState}/>}
+              {item.id === 4 ? <Input placeholder='eg. john@doe.com, smith@sam.com' label='Email Addresses' extraClasses='font-medium text-gray-500' inputClasses='pl-3'/> : <ToggleButton enabled={item.state} setEnabled={item.setState}/>}
             </div>
           </li>)
         })}

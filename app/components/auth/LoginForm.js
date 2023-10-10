@@ -9,6 +9,7 @@ import FormLayout from "@/app/components/Form";
 import {useDispatch} from "react-redux";
 import {loginUser} from "@/app/redux/user/userThunk";
 import {useRouter} from "next/navigation";
+import Cookies from 'js-cookie'
 
 const LoginForm = () => {
   const router = useRouter();
@@ -26,11 +27,13 @@ const LoginForm = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     const body = {
-      username:'sufyan.zaki.789@gmail.com',
-      password:'test123'
+      username: 'sufyan.zaki.789@gmail.com',
+      password: 'test123'
     }
     const data = await dispatch(loginUser(body)).unwrap();
-    // window.location.assign(`http://${data}.localhost:3000/dashboard?data=johnDoe`);
+    Cookies.set('access_token', data.access_token, { expires: 7, path: '/', domain: '.localhost', sameSite: 'lax' });
+    Cookies.set('refresh_token', data.refresh_token, { expires: 31, path: '/', domain: '.localhost', sameSite: 'none' });
+    window.location.assign(`http://${data.domain}.localhost:3000/dashboard`);
   }
 
   return (<FormLayout handleSubmit={handleSubmit} title='Hi, Welcome Back' subtitle='Please enter your details'>

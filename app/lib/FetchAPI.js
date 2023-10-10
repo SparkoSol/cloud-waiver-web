@@ -2,7 +2,6 @@ export async function FetchAPI(url, body, method) {
   try {
     const response = await fetch(`http://192.168.1.36:3000/${url}`, {
       method: method,
-      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },

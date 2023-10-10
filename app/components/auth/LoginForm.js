@@ -31,8 +31,8 @@ const LoginForm = () => {
       password: 'test123'
     }
     const data = await dispatch(loginUser(body)).unwrap();
-    Cookies.set('access_token', data.access_token, { expires: 7, path: '/', domain: '.localhost', sameSite: 'lax' });
-    Cookies.set('refresh_token', data.refresh_token, { expires: 31, path: '/', domain: '.localhost', sameSite: 'none' });
+    // Cookies.set('access_token', data.access_token, { expires: 7, path: '/', domain: '.localhost', sameSite: 'lax'});
+    // Cookies.set('refresh_token', data.refresh_token, { expires: 31, path: '/', domain: '.localhost', sameSite: 'none',secure:true});
     window.location.assign(`http://${data.domain}.localhost:3000/dashboard`);
   }
 

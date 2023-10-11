@@ -27,13 +27,19 @@ const LoginForm = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     const body = {
-      username: 'sufyan.zaki.789@gmail.com',
-      password: 'test123'
+      username: email.current?.value,
+      password: password.current?.value
     }
     const data = await dispatch(loginUser(body)).unwrap();
-    // Cookies.set('access_token', data.access_token, { expires: 7, path: '/', domain: '.localhost', sameSite: 'lax'});
-    // Cookies.set('refresh_token', data.refresh_token, { expires: 31, path: '/', domain: '.localhost', sameSite: 'none',secure:true});
-    window.location.assign(`http://${data.domain}.localhost:3000/dashboard`);
+    Cookies.set('access_token', data.access_token, {expires: 7, path: '/', domain: 'localhost.com', sameSite: 'lax'});
+    Cookies.set('refresh_token', data.refresh_token, {
+      expires: 31,
+      path: '/',
+      domain: '.localhost.com',
+      sameSite: 'none',
+      secure: false
+    });
+    window.location.assign(`http://nintendo.localhost:3000/dashboard`);
   }
 
   return (<FormLayout handleSubmit={handleSubmit} title='Hi, Welcome Back' subtitle='Please enter your details'>

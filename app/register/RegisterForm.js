@@ -14,7 +14,7 @@ import toast from "react-hot-toast";
 
 const RegisterForm = () => {
   const router = useRouter();
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const emailRef = useRef();
@@ -30,7 +30,7 @@ const dispatch = useDispatch();
       label: 'First Name',
       type: 'text',
       btnIcon: UserIcon,
-      ref:firstNameRef
+      ref: firstNameRef
     },
     {
       id: 2,
@@ -38,67 +38,67 @@ const dispatch = useDispatch();
       label: 'Last Name',
       type: 'text',
       btnIcon: UserIcon,
-      ref:lastNameRef
+      ref: lastNameRef
     },
     {
-    id: 3,
-    placeHolder: 'name@example.com',
-    label: 'Your Email',
-    type: 'text',
-    btnIcon: EnvelopeIcon,
-      ref:emailRef
-  }, {
-    id: 4,
-    placeHolder: '*********',
-    label: 'Password',
-    type: 'password',
-    btnIcon:LockClosedIcon,
-      ref:passwordRef
-  },
+      id: 3,
+      placeHolder: 'name@example.com',
+      label: 'Your Email',
+      type: 'email',
+      btnIcon: EnvelopeIcon,
+      ref: emailRef
+    }, {
+      id: 4,
+      placeHolder: '*********',
+      label: 'Password',
+      type: 'password',
+      btnIcon: LockClosedIcon,
+      ref: passwordRef
+    },
     {
       id: 5,
       placeHolder: '*********',
       label: 'Password Confirmation',
       type: 'password',
-      btnIcon:LockClosedIcon,
-      ref:confirmPasswordRef
+      btnIcon: LockClosedIcon,
+      ref: confirmPasswordRef
     },
     {
       id: 6,
       placeHolder: 'Yates Curry Co',
       label: 'Company Name',
       type: 'text',
-      btnIcon:BuildingOfficeIcon,
-      ref:companyNameRef
+      btnIcon: BuildingOfficeIcon,
+      ref: companyNameRef
     },
     {
       id: 7,
       placeHolder: 'Indigo Mccormick',
       label: 'Domain Name',
       type: 'text',
-      btnIcon:BuildingOfficeIcon,
-      ref:domainNameRef
+      btnIcon: BuildingOfficeIcon,
+      ref: domainNameRef
     }]
 
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault();
-    if(passwordRef.current.value !== confirmPasswordRef.current.value){
+    if (passwordRef.current.value !== confirmPasswordRef.current.value) {
       toast.error('Passwords do not match.')
       return
     }
     const body = {
       username: emailRef.current.value,
       password: passwordRef.current.value,
-      first_name : firstNameRef.current.value,
+      first_name: firstNameRef.current.value,
       last_name: lastNameRef.current.value,
       domain: domainNameRef.current.value,
-      company_name:companyNameRef.current.value
+      company_name: companyNameRef.current.value
     }
     const domain = await dispatch(registerUser(body)).unwrap();
-    router.push('/')
-    toast.success('Registration Successful!')
+    toast.success('An Email has been sent!')
   }
-  return(
+
+  return (
     <FormLayout handleSubmit={handleSubmit}
                 title='Welcome to OnlineWaiverPro'
                 subtitle='Start your 15 day free trial today'>
@@ -114,9 +114,10 @@ const dispatch = useDispatch();
         />
       ))}
       <div className='flex mb-2 ml-2 block text-xs text-gray-500 font-normal'>
-        <CheckboxInput label='I accept the ' link='terms and conditions' url='/' extraClasses='text-xs'/>
+        <CheckboxInput label='I accept the ' link='terms and conditions' url='/' extraClasses='text-xs' required={true}/>
       </div>
-      <Button btnText='Get Started' fullWidth='w-full mb-4' btnClasses='bg-CW-primary border-CW-primary lg:px-16 sm:px-8 sm:py-3.5 py-3.5 w-full'/>
+      <Button btnText='Get Started' fullWidth='w-full mb-4'
+              btnClasses='bg-CW-primary border-CW-primary lg:px-16 sm:px-8 sm:py-3.5 py-3.5 w-full'/>
       <div>
         <p className="font-medium text-CW-primary text-sm">Alraedy have an account? <Link
           href="/" className="text-blue-600">Login Here</Link></p>

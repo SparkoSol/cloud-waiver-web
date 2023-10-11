@@ -18,7 +18,17 @@ export const registerUser = createAsyncThunk('user/register', async (payload, th
   try {
     return await FetchAPI('auth/sign-up', payload, 'POST')
   } catch (e) {
-    console.error(e)
+    toast.error(e.message)
+    throw e
+  }
+})
+
+export const verifyUser = createAsyncThunk('user/verifyUser', async (payload, thunkAPI) => {
+  try {
+    const data = await FetchAPI('person/verify-account', payload, 'POST');
+    return data
+  } catch (e) {
+    toast.error(e.message)
     throw e
   }
 })

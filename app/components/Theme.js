@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from 'next/navigation';
+import {usePathname} from 'next/navigation';
 import {Bars4Icon, MagnifyingGlassIcon} from "@heroicons/react/20/solid";
 import Button from "@/app/components/Button";
 import Input from "@/app/components/inputs/Input";
@@ -15,11 +15,11 @@ import {menuOptions} from "@/app/lib/GeneralFunctions";
 const Theme = ({children, currentUser}) => {
   const searchRef = useRef(null);
   const [open, setOpen] = useState(false);
-
   const pathName = usePathname();
+
   return (
     <>
-      {!(pathName === '/forgotPassword' || pathName === '/' || pathName === '/resetPassword' || pathName === '/register') && <>
+      {!(pathName === '/forgotPassword' || pathName === '/' || pathName === '/resetPassword' || pathName === '/register' || pathName.includes('auth')) && <>
         <div className="sticky top-0 z-10 h-16 flex-shrink-0 bg-white shadow">
           <Container>
             <div className='flex gap-3 h-full'>
@@ -48,8 +48,10 @@ const Theme = ({children, currentUser}) => {
         </div>
         <SideBarMenu open={open} setOpen={setOpen} param={pathName}/>
       </>}
-      <div className={`flex flex-col ${!open && !(pathName === '/forgotPassword' || pathName === '/' || pathName === '/resetPassword' || pathName === '/register') ? 'md:pl-64' : 'md:pl-0'} w-full transition-all ease-in-out`}>
-        <div className={`${!(pathName === '/forgotPassword' || pathName === '/' || pathName === '/resetPassword' || pathName === '/register') && 'p-5 max-w-6xl'} mx-auto w-full`}>
+      <div
+        className={`flex flex-col ${!open && !(pathName === '/forgotPassword' || pathName === '/' || pathName.includes('auth') || pathName === '/resetPassword' || pathName === '/register') ? 'md:pl-64' : 'md:pl-0'} w-full transition-all ease-in-out`}>
+        <div
+          className={`${!(pathName === '/forgotPassword' || pathName.includes('auth') || pathName === '/' || pathName === '/resetPassword' || pathName === '/register') && 'p-5 max-w-6xl'} mx-auto w-full`}>
           {children}
         </div>
       </div>

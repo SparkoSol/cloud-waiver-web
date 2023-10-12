@@ -26,9 +26,9 @@ const Theme = ({children}) => {
     if(!currentUser && accessToken){
       dispatch(getUser())
     }
-    // else if(!currentUser && !accessToken){
-    //   router.push('/')
-    // }
+    else if(!currentUser && !accessToken){
+      router.push('/')
+    }
   }, []);
 
   return (

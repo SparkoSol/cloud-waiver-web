@@ -13,7 +13,7 @@ import {useRouter} from "next/navigation";
 import toast from "react-hot-toast";
 
 const RegisterForm = () => {
-  const [domainName, setDomainName] = useState();
+  const [domainName, setDomainName] = useState('');
   const router = useRouter();
   const dispatch = useDispatch();
   const firstNameRef = useRef();
@@ -101,7 +101,12 @@ const RegisterForm = () => {
 
   function convertSpaces(e) {
     const inputValue = e.target.value;
-    const convertedValue = inputValue.replace(/ /g, '-');
+    // Use the regex pattern to replace spaces and remove special characters
+    const convertedValue = inputValue
+      .toLowerCase()
+      .split(' ')
+      .join('-')
+      .replace(/[`~!@#$%^&*()_|+\=?;:'",.<>{}[\]\\\/]/gi, '');
     setDomainName(convertedValue);
   }
 
@@ -127,7 +132,7 @@ const RegisterForm = () => {
             className='pointer-events-none absolute inset-y-0 left-3 mt-px flex items-center text-CW-textGray w-5 h-5 transform translate-y-1/2'/>
           <input onChange={e => convertSpaces(e)}
                  className="block w-full py-2.5 rounded-md border border-gray-300 bg-gray-50 focus:border-gray-300 focus-visible:outline-none sm:text-sm text-gray-900 pl-11"
-                 id="Indigo Mccormick" required="" placeholder="Indigo Mccormick" type="text" value={domainName}
+                 id="Indigo Mccormick" required placeholder="Indigo-Mccormick" type="text" value={domainName}
                  name="domain name"/>
           <span>.cloudwaiver.com</span>
         </div>

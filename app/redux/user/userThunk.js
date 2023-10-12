@@ -7,8 +7,10 @@ import toast from "react-hot-toast";
 export const loginUser = createAsyncThunk('user/loginUser', async (payload, thunkAPI) => {
   try {
     const data = await FetchAPI('auth/sign-in', payload, 'POST')
-    localStorage.setItem('access_token', data.access_token);
-    localStorage.setItem('refresh_token', data.refresh_token)
+    if (data.access_token) {
+      localStorage.setItem('access_token', data.access_token);
+      localStorage.setItem('refresh_token', data.refresh_token)
+    }
     return data
   } catch (e) {
     toast.error(e.message)

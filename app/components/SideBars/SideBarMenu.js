@@ -12,9 +12,21 @@ import {
 import {XMarkIcon} from "@heroicons/react/20/solid";
 import Button from "@/app/components/Button";
 import Image from "next/image";
-import tabs from "@/app/components/Tabs";
+import {usePathname, useRouter} from "next/navigation";
+import {useEffect} from "react";
 
-const SideBarMenu = ({open, setOpen, param}) => {
+const SideBarMenu = ({open, setOpen}) => {
+  const router = useRouter();
+  let currentUser = localStorage.getItem('cw-user');
+  currentUser = JSON.parse(currentUser);
+  const param = usePathname();
+
+  useEffect(() => {
+    if (currentUser?.verified && (param.includes('auth') || param === '/')) {
+      router.push('/dashboard')
+    }
+  }, [param]);
+
   const inputList = [
     {id: 9, text: 'Dashboard', url: '/dashboard', Icon: Squares2X2Icon},
     {id: 1, text: 'Waiver Templates', url: '/template', Icon: DocumentTextIcon},
@@ -42,7 +54,8 @@ const SideBarMenu = ({open, setOpen, param}) => {
         </div>
         <ul className='space-y-1 pb-2'>
           {inputList.map(item => {
-            return <MenuListItem key={item.id} active={url === item.url} Icon={item.Icon} text={item.text} url={item.url}/>
+            return <MenuListItem key={item.id} active={url === item.url} Icon={item.Icon} text={item.text}
+                                 url={item.url}/>
           })}
         </ul>
       </aside>
@@ -50,7 +63,8 @@ const SideBarMenu = ({open, setOpen, param}) => {
         className={`hidden md:fixed md:bottom-0 md:top-[4.0625rem] md:flex md:w-64 md:flex-col z-1 transition-all ease-in-out bg-white border-r border-gray-200 ${open ? 'left-[-256px]' : 'left-0'}`}>
         <ul className='space-y-4 mt-5'>
           {inputList.map(item => {
-            return <MenuListItem key={item.id} active={url === item.url} Icon={item.Icon} text={item.text} url={item.url}/>
+            return <MenuListItem key={item.id} active={url === item.url} Icon={item.Icon} text={item.text}
+                                 url={item.url}/>
           })}
         </ul>
       </aside>

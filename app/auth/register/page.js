@@ -1,4 +1,4 @@
-import RegisterForm from "@/app/register/RegisterForm";
+import RegisterForm from "@/app/auth/register/RegisterForm";
 import SideBarAdd from "@/app/components/SideBars/SideBarAdd";
 const RegisterPage = async () => {
   return (

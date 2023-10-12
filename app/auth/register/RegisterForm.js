@@ -6,13 +6,14 @@ import Button from "@/app/components/Button";
 import {BuildingOfficeIcon, EnvelopeIcon, LockClosedIcon, UserIcon} from "@heroicons/react/20/solid";
 import CheckboxInput from "@/app/components/inputs/CheckboxInput";
 import FormLayout from "@/app/components/Form";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {registerUser} from "@/app/redux/user/userThunk";
 import {useRouter} from "next/navigation";
 import toast from "react-hot-toast";
 
 const RegisterForm = () => {
+  const [domainName, setDomainName] = useState();
   const router = useRouter();
   const dispatch = useDispatch();
   const firstNameRef = useRef();
@@ -20,7 +21,6 @@ const RegisterForm = () => {
   const emailRef = useRef();
   const companyNameRef = useRef();
   const confirmPasswordRef = useRef()
-  const domainNameRef = useRef()
   const passwordRef = useRef();
 
   const inputData = [
@@ -71,14 +71,15 @@ const RegisterForm = () => {
       btnIcon: BuildingOfficeIcon,
       ref: companyNameRef
     },
-    {
-      id: 7,
-      placeHolder: 'Indigo Mccormick',
-      label: 'Domain Name',
-      type: 'text',
-      btnIcon: BuildingOfficeIcon,
-      ref: domainNameRef
-    }]
+    // {
+    //   id: 7,
+    //   placeHolder: 'Indigo Mccormick',
+    //   label: 'Domain Name',
+    //   type: 'text',
+    //   btnIcon: BuildingOfficeIcon,
+    //   ref: domainNameRef
+    // }
+  ]
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -91,16 +92,22 @@ const RegisterForm = () => {
       password: passwordRef.current.value,
       first_name: firstNameRef.current.value,
       last_name: lastNameRef.current.value,
-      domain: domainNameRef.current.value,
+      domain: domainName,
       company_name: companyNameRef.current.value
     }
     const domain = await dispatch(registerUser(body)).unwrap();
     toast.success('An Email has been sent!')
   }
 
+  function convertSpaces(e) {
+    const inputValue = e.target.value;
+    const convertedValue = inputValue.replace(/ /g, '-');
+    setDomainName(convertedValue);
+  }
+
   return (
     <FormLayout handleSubmit={handleSubmit}
-                title='Welcome to OnlineWaiverPro'
+                title='Welcome to Cloud Waiver'
                 subtitle='Start your 15 day free trial today'>
       {inputData.map((item) => (
         <Input
@@ -113,8 +120,21 @@ const RegisterForm = () => {
           extraClasses={`mb-6 ${item.id !== 7 ? '' : 'w-fit inline-block'}`}
         />
       ))}
+      <div className="mb-6 w-fit inline-block"><label className="block text-sm font-medium text-primary mb-2 text-start"
+                                                      htmlFor="domain name">Domain Name</label>
+        <div className="relative rounded-md shadow-sm flex items-center">
+          <BuildingOfficeIcon
+            className='pointer-events-none absolute inset-y-0 left-3 mt-px flex items-center text-CW-textGray w-5 h-5 transform translate-y-1/2'/>
+          <input onChange={e => convertSpaces(e)}
+                 className="block w-full py-2.5 rounded-md border border-gray-300 bg-gray-50 focus:border-gray-300 focus-visible:outline-none sm:text-sm text-gray-900 pl-11"
+                 id="Indigo Mccormick" required="" placeholder="Indigo Mccormick" type="text" value={domainName}
+                 name="domain name"/>
+          <span>.cloudwaiver.com</span>
+        </div>
+      </div>
       <div className='flex mb-2 ml-2 block text-xs text-gray-500 font-normal'>
-        <CheckboxInput label='I accept the ' link='terms and conditions' url='/' extraClasses='text-xs' required={true}/>
+        <CheckboxInput label='I accept the ' link='terms and conditions' url='/' extraClasses='text-xs'
+                       required={true}/>
       </div>
       <Button btnText='Get Started' fullWidth='w-full mb-4'
               btnClasses='bg-CW-primary border-CW-primary lg:px-16 sm:px-8 sm:py-3.5 py-3.5 w-full'/>

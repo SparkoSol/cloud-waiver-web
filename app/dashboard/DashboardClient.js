@@ -4,7 +4,7 @@ import Heading from "@/app/components/Heading";
 import Card from "@/app/dashboard/components/Card";
 import Input from "@/app/components/inputs/Input";
 import {MagnifyingGlassIcon} from "@heroicons/react/20/solid";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import SelectInput from "@/app/components/inputs/SelectInput";
 import {cardsData, dashboardData, DashBoardHeaders, generateMonths, generateYears} from "@/app/lib/GeneralFunctions";
 import DataTable from "@/app/components/DataTable";
@@ -13,16 +13,16 @@ import clipboardIcon from "@heroicons/react/20/solid/esm/ClipboardIcon";
 import DashboardRow from "@/app/dashboard/components/DashboardRow";
 import {FolderIcon} from "@heroicons/react/24/outline";
 import Modal from "@/app/components/Modals/Modal";
-import {useSearchParams} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 
 const DashboardClient = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const searchRef = useRef();
   const [status, setStatus] = useState('Status')
   const [template, setTemplate] = useState('Template')
   const [month, setMonth] = useState('Month')
   const [year, setYear] = useState('Year')
-  const [selectAll, setSelectAll] = useState(false);
   const [openModal, setOpenModal] = useState(false)
 
   const selectData = [{
@@ -50,17 +50,20 @@ const DashboardClient = () => {
         <Heading title='Recent waiver' titleClasses='text-xl leading-tight text-gray-800 mb-4'/>
         <Button BtnIcon={clipboardIcon}
                 btnText='Create waivers'
-                onClick={e=>setOpenModal(true)}
+                onClick={e => setOpenModal(true)}
                 btnClasses='bg-CW-primary border-CW-primary px-5 py-2.5'
                 iconClasses='w-4 h-4 text-white inline-block ml-2'/>
       </div>
       <div className='flex gap-2 mb-4 flex-wrap'>
-        <Input placeholder='Search' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon} extraClasses='w-fit inline-block'/>
+        <Input placeholder='Search' inputRef={searchRef} BtnIcon={MagnifyingGlassIcon}
+               extraClasses='w-fit inline-block'/>
         {selectData.map((item, index) => {
-          return <SelectInput extraClasses='grow md:grow-0 w-28' key={index} options={item.options} state={item.state} setState={item.setState}/>
+          return <SelectInput extraClasses='grow md:grow-0 w-28' key={index} options={item.options} state={item.state}
+                              setState={item.setState}/>
         })}
       </div>
-      {dashboardData.length > 0 ? <DataTable headers={DashBoardHeaders} TableRow={DashboardRow} items={dashboardData} setSelectAll={setSelectAll}/> : <div className='text-center mt-4'>
+      {dashboardData.length > 0 ? <DataTable headers={DashBoardHeaders} TableRow={DashboardRow} items={dashboardData}
+      /> : <div className='text-center mt-4'>
         <FolderIcon className='w-40 h-40 text-gray-400 mx-auto'/>
         <span className='text-gray-500 mb-10 text-base'>No Waivers Found. Get started by creating a waiver</span>
       </div>}

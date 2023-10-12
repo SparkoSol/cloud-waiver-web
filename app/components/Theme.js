@@ -2,36 +2,50 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {usePathname} from 'next/navigation';
+import {usePathname, useRouter} from 'next/navigation';
 import {Bars4Icon, MagnifyingGlassIcon} from "@heroicons/react/20/solid";
 import Button from "@/app/components/Button";
 import Input from "@/app/components/inputs/Input";
-import {useRef, useState} from "react";
+import {useRef, useState, useEffect} from "react";
 import UserMenu from "@/app/components/inputs/UserMenu";
 import Container from "@/app/components/Container";
 import SideBarMenu from "@/app/components/SideBars/SideBarMenu";
 import {menuOptions} from "@/app/lib/GeneralFunctions";
+import {useDispatch, useSelector} from "react-redux";
+import {getUser} from "@/app/redux/user/userThunk";
 
-const Theme = ({children, currentUser}) => {
+const Theme = ({children}) => {
+  const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.user.currentUser);
+  const router = useRouter();
   const searchRef = useRef(null);
   const [open, setOpen] = useState(false);
-  const pathName = usePathname();
+  const accessToken = localStorage.getItem('access_token');
+
+  useEffect(() => {
+    if(!currentUser && accessToken){
+      dispatch(getUser())
+    }
+    // else if(!currentUser && !accessToken){
+    //   router.push('/')
+    // }
+  }, []);
 
   return (
     <>
-      {!(pathName === '/forgotPassword' || pathName === '/' || pathName === '/resetPassword' || pathName === '/register' || pathName.includes('auth')) && <>
+      {currentUser?.verified && <>
         <div className="sticky top-0 z-10 h-16 flex-shrink-0 bg-white shadow">
           <Container>
-            <div className='flex gap-3 h-full'>
+            <div className='flex gap-6 h-full'>
               <Button onClick={e => setOpen(!open)} type="button" BtnIcon={Bars4Icon}/>
               <div className="flex flex-1 justify-between gap-3">
-                <div className="flex flex-1 items-center space-x-4">
+                <div className="flex flex-1 items-center space-x-6">
                   <div className="hidden md:inline-block min-w-[70px]">
                     <Link href="/dashboard">
                       <Image
                         src="/images/cloudwaiver.png"
-                        width={70}
-                        height={70}
+                        width='72'
+                        height='60'
                         alt="logo"/>
                     </Link>
                   </div>
@@ -46,12 +60,12 @@ const Theme = ({children, currentUser}) => {
             </div>
           </Container>
         </div>
-        <SideBarMenu open={open} setOpen={setOpen} param={pathName}/>
+        <SideBarMenu open={open} setOpen={setOpen}/>
       </>}
       <div
-        className={`flex flex-col ${!open && !(pathName === '/forgotPassword' || pathName === '/' || pathName.includes('auth') || pathName === '/resetPassword' || pathName === '/register') ? 'md:pl-64' : 'md:pl-0'} w-full transition-all ease-in-out`}>
+        className={`flex flex-col ${!open && currentUser?.verified ? 'md:pl-64' : 'md:pl-0'} w-full transition-all ease-in-out`}>
         <div
-          className={`${!(pathName === '/forgotPassword' || pathName.includes('auth') || pathName === '/' || pathName === '/resetPassword' || pathName === '/register') && 'p-5 max-w-6xl'} mx-auto w-full`}>
+          className={`${currentUser?.verified && 'p-5 max-w-6xl'} mx-auto w-full`}>
           {children}
         </div>
       </div>

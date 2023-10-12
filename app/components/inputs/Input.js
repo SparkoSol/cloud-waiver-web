@@ -20,7 +20,6 @@ const Input = ({
 
       </div>
     </div>
-    {label === 'Domain Name' && <span>.cloudwaiver.com</span>}
   </>)
 }
 

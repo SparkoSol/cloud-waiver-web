@@ -1,31 +1,31 @@
 'use client'
 import Heading from "@/app/components/Heading";
 import {useEffect} from "react";
-import {useParams, useRouter} from "next/navigation";
+import {useParams} from "next/navigation";
 import {useDispatch} from "react-redux";
-import {verifyUser} from "@/app/redux/user/userThunk";
+import {resendEmail, verifyUser} from "@/app/redux/user/userThunk";
 import toast from "react-hot-toast";
 
 const VerificationClient = () => {
-  const router = useRouter();
   const dispatch = useDispatch();
   const {id, hashId} = useParams();
 
   useEffect(() => {
-    if (id && hashId) {
-      VerifyUserToken()
-        .then(r => {
-          toast.success('Verification Successful.')
-          router.push('/')
-        })
-    }
-  }, [id, hashId]);
+    VerifyUserToken()
+  }, []);
 
-  async function VerifyUserToken() {
-    return await dispatch(verifyUser({
-      id,
-      hash: hashId
-    })).unwrap();
+  function VerifyUserToken() {
+    let user = localStorage.getItem('cw-user');
+    if (user) {
+      user = JSON.parse(user);
+      localStorage.removeItem("access_token");
+      dispatch(resendEmail({
+        email: user.username,
+        id: user._id,
+        name: user.first_name,
+      })).unwrap().then(r => {
+      });
+    }
   }
 
   return (

@@ -20,9 +20,9 @@ const Theme = ({children}) => {
   const router = useRouter();
   const searchRef = useRef(null);
   const [open, setOpen] = useState(false);
-  const accessToken = localStorage.getItem('access_token');
 
   useEffect(() => {
+    let accessToken = localStorage.getItem('access_token');
     if(!currentUser && accessToken){
       dispatch(getUser())
     }

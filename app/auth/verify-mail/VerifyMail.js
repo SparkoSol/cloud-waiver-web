@@ -4,7 +4,6 @@ import {useEffect} from "react";
 import {useParams} from "next/navigation";
 import {useDispatch} from "react-redux";
 import {resendEmail, verifyUser} from "@/app/redux/user/userThunk";
-import toast from "react-hot-toast";
 
 const VerificationClient = () => {
   const dispatch = useDispatch();

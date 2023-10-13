@@ -15,12 +15,12 @@ import {XMarkIcon} from "@heroicons/react/20/solid";
 import Button from "@/app/components/Button";
 import Image from "next/image";
 import {usePathname, useRouter} from "next/navigation";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 const SideBarMenu = ({open, setOpen}) => {
   const router = useRouter();
-  let currentUser = localStorage.getItem('cw-user');
-  currentUser = JSON.parse(currentUser);
+  const [currentUser, setCurrentUser] = useState('');
+
   const param = usePathname();
 
   useEffect(() => {
@@ -28,6 +28,13 @@ const SideBarMenu = ({open, setOpen}) => {
       router.push('/dashboard')
     }
   }, [param]);
+
+  useEffect(() => {
+    let user = localStorage.getItem('cw-user')
+    user = JSON.parse(currentUser);
+    setCurrentUser(user)
+  }, []);
+
 
   const inputList = [
     {id: 9, text: 'Dashboard', url: '/dashboard', Icon: Squares2X2Icon},

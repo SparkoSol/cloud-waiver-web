@@ -4,13 +4,11 @@ import CheckboxInput from "@/app/components/inputs/CheckboxInput";
 import Link from "next/link";
 import Button from "@/app/components/Button";
 import {EnvelopeIcon, LockClosedIcon} from "@heroicons/react/20/solid";
-import {useEffect, useRef, useState} from "react";
+import {useRef} from "react";
 import FormLayout from "@/app/components/Form";
 import {useDispatch, useSelector} from "react-redux";
 import {getUser, loginUser} from "@/app/redux/user/userThunk";
 import {useRouter} from "next/navigation";
-import Cookies from 'js-cookie'
-import Spinner from "@/app/components/Spinner";
 
 const LoginForm = () => {
   const currentUser = useSelector(state => state.user.currentUser);

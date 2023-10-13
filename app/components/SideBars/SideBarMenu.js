@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link";
 import ClipboardDocumentIcon from "@heroicons/react/20/solid/esm/ClipboardDocumentIcon";
 import DocumentTextIcon from "@heroicons/react/20/solid/esm/DocumentTextIcon";

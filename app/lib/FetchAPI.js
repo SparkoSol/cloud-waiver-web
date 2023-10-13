@@ -1,3 +1,5 @@
+'use client'
+
 export async function FetchAPI(url, body, method) {
   try {
     const accessToken = localStorage.getItem('access_token') || null;

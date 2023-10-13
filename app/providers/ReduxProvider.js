@@ -7,11 +7,12 @@ import {AuthProvider} from "@/app/Provider";
 
 export function ReduxProvider({children}) {
   return (
-    <AuthProvider>
-      <Provider store={store}>
-        <ToasterProvider/>
+    <Provider store={store}>
+      <ToasterProvider/>
+      <AuthProvider>
         {children}
-      </Provider>
-    </AuthProvider>
-  );
+      </AuthProvider>
+    </Provider>
+)
+  ;
 }

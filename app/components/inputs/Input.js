@@ -1,10 +1,13 @@
 'use client';
 
 import {twMerge} from "tailwind-merge";
+import {useEffect} from "react";
 
 const Input = ({
                  placeholder, type='text', label = null, BtnIcon = null, inputRef, extraClasses = '', inputClasses, value = ''
                }) => {
+
+
   return (<>
     <div className={twMerge(`w-full ${extraClasses}`)}>
       {label && <label className='block text-sm font-medium text-primary mb-2 text-start'

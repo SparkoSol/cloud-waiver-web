@@ -1,7 +1,8 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
-console.log('called')
+
+console.log(process.env.NEXTAUTH_SECRET)
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -25,7 +26,7 @@ export const authOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: 'secretaryship',
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/",
   },

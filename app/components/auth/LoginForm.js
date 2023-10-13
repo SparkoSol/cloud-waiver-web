@@ -9,7 +9,6 @@ import FormLayout from "@/app/components/Form";
 import {useDispatch, useSelector} from "react-redux";
 import {getUser, loginUser} from "@/app/redux/user/userThunk";
 import {useRouter} from "next/navigation";
-import {signIn} from "next-auth/react";
 
 const LoginForm = () => {
   const currentUser = useSelector(state => state.user.currentUser);

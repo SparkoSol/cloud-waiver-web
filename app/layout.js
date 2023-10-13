@@ -2,7 +2,7 @@ import './globals.css'
 import {Inter} from 'next/font/google'
 import Theme from "@/app/components/Theme";
 import {ReduxProvider} from "@/app/providers/ReduxProvider";
-import {FetchAPI} from "@/app/lib/FetchAPI";
+import {CWAPI} from "@/app/lib/CWAPI";
 
 const inter = Inter({subsets: ['latin']})
 

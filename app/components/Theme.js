@@ -23,11 +23,12 @@ const Theme = ({children}) => {
 
   useEffect(() => {
     let accessToken = localStorage.getItem('access_token');
+    let resetToken = localStorage.getItem('reset_token');
+    // if(!currentUser && !accessToken && !resetToken){
+    //   router.push('/')
+    // }
     if(!currentUser && accessToken){
       dispatch(getUser())
-    }
-    else if(!currentUser && !accessToken){
-      router.push('/')
     }
   }, []);
 

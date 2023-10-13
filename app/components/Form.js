@@ -6,7 +6,7 @@ const FormLayout = ({children, handleSubmit, title, subtitle}) => {
       <div className='py-4 md:py-12 px-4 sm:px-12 flex items-center'>
         <div className='w-full sm:w-96 mx-auto'>
           <div className='mb-8'>
-            <img src='/images/cloudwaiver.png' className='h-[110px] object-cover block lg:hidden' alt='Logo'/>
+            <img src='/images/cloudwaiver.png' className='w-28 mx-auto sm:mx-0 block mb-4 lg:hidden' alt='Logo'/>
             <Heading
               title={title}
               subtitle={subtitle}

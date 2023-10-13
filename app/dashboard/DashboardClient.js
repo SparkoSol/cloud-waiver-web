@@ -1,7 +1,6 @@
 'use client'
 
 import Heading from "@/app/components/Heading";
-import Card from "@/app/dashboard/components/Card";
 import Input from "@/app/components/inputs/Input";
 import {MagnifyingGlassIcon} from "@heroicons/react/20/solid";
 import {useEffect, useRef, useState} from "react";
@@ -10,10 +9,11 @@ import {cardsData, dashboardData, DashBoardHeaders, generateMonths, generateYear
 import DataTable from "@/app/components/DataTable";
 import Button from "@/app/components/Button";
 import clipboardIcon from "@heroicons/react/20/solid/esm/ClipboardIcon";
-import DashboardRow from "@/app/dashboard/components/DashboardRow";
 import {FolderIcon} from "@heroicons/react/24/outline";
 import Modal from "@/app/components/Modals/Modal";
 import {useRouter, useSearchParams} from "next/navigation";
+import DashboardRow from "@/app/dashboard/components/DashboardRow";
+import Card from "@/app/dashboard/components/Card";
 
 const DashboardClient = () => {
   const router = useRouter();

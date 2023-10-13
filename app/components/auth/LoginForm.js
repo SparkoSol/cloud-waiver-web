@@ -9,6 +9,7 @@ import FormLayout from "@/app/components/Form";
 import {useDispatch, useSelector} from "react-redux";
 import {getUser, loginUser} from "@/app/redux/user/userThunk";
 import {useRouter} from "next/navigation";
+import {signIn} from "next-auth/react";
 
 const LoginForm = () => {
   const currentUser = useSelector(state => state.user.currentUser);
@@ -19,7 +20,7 @@ const LoginForm = () => {
   const remember = useRef(null);
 
   const inputData = [{
-    id: 1, placeHolder: 'name@example.com', label: 'Your Email', type: 'text', btnIcon: EnvelopeIcon, ref: email
+    id: 1, placeHolder: 'name@example.com', label: 'Your Email', type: 'email', btnIcon: EnvelopeIcon, ref: email
   }, {
     id: 2, placeHolder: '*********', label: 'Password', type: 'password', btnIcon: LockClosedIcon, ref: password
   }]
@@ -28,8 +29,11 @@ const LoginForm = () => {
     e.preventDefault();
     const body = {
       username: email.current?.value,
-      password: password.current?.value
+      password: password.current?.value,
+      // redirect: false,
     }
+
+    // const res = await signIn("credentials", body);
     const data = await dispatch(loginUser(body)).unwrap();
     await dispatch(getUser())
 
@@ -38,7 +42,7 @@ const LoginForm = () => {
     if (currentUser.verified) {
       router.push('/dashboard')
     } else {
-      router.push('auth/verify-mail')
+      router.push('/verify-mail')
     }
     // window.location.assign(`http://nintendo.localhost:3000/dashboard`);
   }
@@ -53,15 +57,15 @@ const LoginForm = () => {
       inputRef={item.ref}
       extraClasses='mb-6'
     />))}
-    <div className='flex justify-between mb-4'>
+    <div className='flex justify-between mb-4 flex-wrap gap-3'>
       <CheckboxInput label='Remember me' inputRef={remember} extraClasses='text-sm'/>
-      <Link className='text-sm font-medium text-blue-600' href={'/auth/forgotPassword'}>Forgot your password?</Link>
+      <Link className='text-sm font-medium text-blue-600' href={'/forgotPassword'}>Forgot password?</Link>
     </div>
     <Button btnText='Login' fullWidth='w-full mb-4'
             btnClasses='bg-CW-primary border-CW-primary lg:px-16 sm:px-8 sm:py-3.5 py-3.5 w-full'/>
     <div>
       <p className="font-medium text-CW-primary text-sm">Don't have an account? <Link
-        href="/auth/register" className="text-blue-600">Signup</Link></p>
+        href="/register" className="text-blue-600">Signup</Link></p>
     </div>
     {/*<Spinner/>*/}
   </FormLayout>)

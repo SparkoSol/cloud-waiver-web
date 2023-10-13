@@ -24,14 +24,15 @@ const SideBarMenu = ({open, setOpen}) => {
   const param = usePathname();
 
   useEffect(() => {
-    if (currentUser?.verified && (param.includes('auth') || param === '/')) {
-      router.push('/dashboard')
+    let excludedPages = ['/', '/register', '/forgotPassword']
+    if (currentUser?.verified && excludedPages.includes(param)) {
+      router.push('/dashboard');
     }
-  }, [param]);
+  }, [param, currentUser]);
 
   useEffect(() => {
     let user = localStorage.getItem('cw-user')
-    user = JSON.parse(currentUser);
+    user = JSON.parse(user);
     setCurrentUser(user)
   }, []);
 
@@ -52,7 +53,7 @@ const SideBarMenu = ({open, setOpen}) => {
     <>
       <aside
         className={`block md:hidden fixed bottom-0 top-0 z-10 w-64 transition-all ease-in-out bg-white border-r border-gray-200 ${open ? 'left-[-256px]' : 'left-0'} overflow-scroll`}>
-        <div className='flex justify-between items-center px-3'>
+        <div className='flex justify-between items-center px-3 my-4 md:my-0'>
           <Image
             src='/images/cloudwaiver.png'
             alt='Logo'

@@ -11,9 +11,11 @@ import {useDispatch} from "react-redux";
 import {registerUser} from "@/app/redux/user/userThunk";
 import {useRouter} from "next/navigation";
 import toast from "react-hot-toast";
+import VerificationModal from "@/app/components/Modals/VerificationModal";
 
 const RegisterForm = () => {
   const [domainName, setDomainName] = useState('');
+  const [open, setOpen] = useState(false)
   const router = useRouter();
   const dispatch = useDispatch();
   const firstNameRef = useRef();
@@ -96,7 +98,7 @@ const RegisterForm = () => {
       company_name: companyNameRef.current.value
     }
     const domain = await dispatch(registerUser(body)).unwrap();
-    toast.success('An Email has been sent!')
+    setOpen(true)
   }
 
   function convertSpaces(e) {
@@ -127,7 +129,7 @@ const RegisterForm = () => {
       ))}
       <div className="mb-6 w-fit inline-block"><label className="block text-sm font-medium text-primary mb-2 text-start"
                                                       htmlFor="domain name">Domain Name</label>
-        <div className="relative rounded-md shadow-sm flex items-center">
+        <div className="relative rounded-md shadow-sm flex gap-2 items-center">
           <BuildingOfficeIcon
             className='pointer-events-none absolute inset-y-0 left-3 mt-px flex items-center text-CW-textGray w-5 h-5 transform translate-y-1/2'/>
           <input onChange={e => convertSpaces(e)}
@@ -147,6 +149,7 @@ const RegisterForm = () => {
         <p className="font-medium text-CW-primary text-sm">Alraedy have an account? <Link
           href="/" className="text-blue-600">Login Here</Link></p>
       </div>
+      <VerificationModal open={open} setOpen={setOpen} />
     </FormLayout>
   )
 }

@@ -9,8 +9,6 @@ import {useDispatch} from "react-redux";
 import {resetPassword} from "@/app/redux/user/userThunk";
 import toast from "react-hot-toast";
 import {useParams, useRouter} from "next/navigation";
-import {router} from "next/client";
-
 const ResetPasswordForm = () => {
   const {id} = useParams();
   const dispatch = useDispatch();
